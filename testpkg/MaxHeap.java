@@ -8,6 +8,9 @@ public class MaxHeap {
 	private int arr_size; // memory of array
 	private int heap_size; // size of heap (number of items stored)
 	
+	
+	
+	
 	// sets an empty heap
 	public MaxHeap(int heap_size) {
 		
@@ -18,6 +21,11 @@ public class MaxHeap {
 		this.heap = new Integer[heap_size];
 		
 	}
+	
+	
+	// constructor that makes a heap given an unsorted array
+	// starting at the first non-leaf node, recursively left-order traverse the tree with root that node
+	// then work your way up from the bottom to the root of the full list, ensuring the entire tree is made
 	
 	
 	public MaxHeap(Integer[] someArray) {
@@ -34,7 +42,6 @@ public class MaxHeap {
 		
 		// use the heap function made below to sort the someArray array
 		for (int i = nonleaf_ind; i >= 0; i--) {
-			
 			
 			maxheapsort(someArray, i);
 		}
@@ -58,7 +65,7 @@ public class MaxHeap {
 	// the integer 'node' passed is the index of the current node acting as the root of a subtree to be heaped
 	public void maxheapsort(Integer arr[], int node) {
 		
-		// System.out.println("now sortiing subtree with root index: " + node + " , value: " + arr[node]);
+		// System.out.println("now sorting subtree with root index: " + node + " , value: " + arr[node]);
 		
 		// define the parent and children to be used as indices, as well as a temp variable for swapping nodes
 		int largest, lc, rc, temp;
@@ -98,9 +105,11 @@ public class MaxHeap {
 		}
 		
 		
-		// System.out.println("largest after child search: " + largest);
+	
 		
-		// now swap the parent with the biggest node, or don't swap if children are smaller
+		// so now we have swapped out a section, now call the function recursively to keep ironing out any errors
+		// this will stop once the largest == node, meaning the parent is bigger than all children
+					
 		if (largest != node) {
 			
 			// System.out.println("swapping...");
@@ -109,8 +118,6 @@ public class MaxHeap {
 			arr[node] = arr[largest];
 			arr[largest] = temp;
 			
-			// so now we have swapped out a section, now call the function recursively to keep ironing out any errors
-			// this will stop once the largest == node, meaning the parent is bigger than all children
 			
 			// so in this case, 'largest' is now the child you switched with, so you'll be investigating that subtree
 			
@@ -123,10 +130,7 @@ public class MaxHeap {
 				
 			
 			
-			
-		}else {
-			// System.out.println("subtree sorted, moving on...");
-			
+		// if the largest is the node and nothing was switched, no need to traverse the subtree any further
 		}
 	}
 	
@@ -149,6 +153,12 @@ public class MaxHeap {
 	
 	
 	// inserts a node of value n into the tree
+	// 1) makes new array of either same size or double size if needed (tbh don't know if need to make new array if same size but whatever) & 
+	// change the size variables to make them more accurate
+	// 2) then loops through the new array and fills it in with the values from the og heap, and then adds the 'n' on top
+	// 3) just like in constructor 2, start from the first non-leaf node and recursively left-order traverse to sort everything out
+	
+	
 	public void insert(int n) {
 
 		/*System.out.println("heap_size: "+ heap_size);
@@ -197,7 +207,9 @@ public class MaxHeap {
 	}
 	
 	
-	// so this is literally just reversing an array
+	// so this is literally just sorting an array to descending order
+	// start from the first value, find the furthest value in the array that it's smaller than and swap
+	// continue looping and swapping and eventually, everything sorts itself ut
 	public static void heapsort(Integer[] arrayToSort) {
 		
 		// copy the input to an array that will be arrayToSort
@@ -224,6 +236,9 @@ public class MaxHeap {
 	
 	
 	// this deletes the max (root) of a heap and then reshuffles everything
+	// 1) puts the last leaf as the root and adjust the size variables
+	// 2) same thing, last non-leaf node and sort the boi
+	
 	public int deleteMax() {
 		
 		// essentially using a 'temp', but inserting the last leaf into the root
@@ -235,7 +250,7 @@ public class MaxHeap {
 		heap_size -= 1;
 		
 		
-		// use the heap function made below to sort the someArray array
+		// use the heap function made below to sort the heap
 		// only need to start at the leaf bc we want to search the entire tree
 		
 		maxheapsort(heap, heap.length/2 - 1);
