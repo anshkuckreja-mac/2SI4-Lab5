@@ -1,3 +1,9 @@
+
+
+// ME: ANSH KUCKREJA
+// PARTNER: MICHAEL KNAPMAN
+
+
 package testpkg;
 
 public class MaxHeap {
@@ -12,6 +18,7 @@ public class MaxHeap {
 	
 	
 	// sets an empty heap
+	
 	public MaxHeap(int heap_size) {
 		
 		
@@ -63,6 +70,9 @@ public class MaxHeap {
 	
 	// this function will be recursively called to swap out parents and children based on whichever ones' bigger
 	// the integer 'node' passed is the index of the current node acting as the root of a subtree to be heaped
+	
+	// worst time complexity: theta(n), linear
+	// space complexity: theta(n), constant definitions recursively
 	public void maxheapsort(Integer arr[], int node) {
 		
 		// System.out.println("now sorting subtree with root index: " + node + " , value: " + arr[node]);
@@ -136,6 +146,7 @@ public class MaxHeap {
 	
 	
 	// accessor method gets the size of the heap
+	
 	public int getSizeHeap() {
 		return this.heap_size;
 	}
@@ -158,7 +169,8 @@ public class MaxHeap {
 	// 2) then loops through the new array and fills it in with the values from the og heap, and then adds the 'n' on top
 	// 3) just like in constructor 2, start from the first non-leaf node and recursively left-order traverse to sort everything out
 	
-	
+	// worst time complexity: theta(n), linear, recursion
+	// space complexity: theta(n), constant definitions recursively
 	public void insert(int n) {
 
 		/*System.out.println("heap_size: "+ heap_size);
@@ -210,6 +222,9 @@ public class MaxHeap {
 	// so this is literally just sorting an array to descending order
 	// start from the first value, find the furthest value in the array that it's smaller than and swap
 	// continue looping and swapping and eventually, everything sorts itself ut
+	
+	// worst time complexity: theta(n * log(n)), double loop
+	// space complexity: theta(1), constant
 	public static void heapsort(Integer[] arrayToSort) {
 		
 		// copy the input to an array that will be arrayToSort
@@ -239,6 +254,8 @@ public class MaxHeap {
 	// 1) puts the last leaf as the root and adjust the size variables
 	// 2) same thing, last non-leaf node and sort the boi
 	
+	// worst time complexity: theta(n), linear
+	// space complexity: theta(n), constant definitions recursively
 	public int deleteMax() {
 		
 		// essentially using a 'temp', but inserting the last leaf into the root
@@ -261,6 +278,8 @@ public class MaxHeap {
 	
 	
 	// just prints out all the values of the heap into a string in typical array order
+	// worst time complexity: theta(n), linear
+	// space complexity: theta(1), constant definitions recursively
 	public String toString() {
 		
 		String str = "";
